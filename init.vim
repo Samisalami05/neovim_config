@@ -1,3 +1,4 @@
+let g:coq_settings = { 'auto_start': 'shut-up' }
 " files "
 luafile ~/.config/nvim/plugins.lua
 
@@ -38,4 +39,4 @@ nnoremap <A-S-l> <C-w>l
 nnoremap <A-S-n> gT
 nnoremap <A-S-m> gt
 
-colorscheme rose-pine
+colorscheme gruvbox
