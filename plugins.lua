@@ -40,12 +40,19 @@ require("lazy").setup({
 	},
 	"junegunn/fzf",
 	"junegunn/fzf.vim",
+	
+	-- themes
 	"rose-pine/neovim",
 	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
 	{
 		"mason-org/mason.nvim",
 		opts = {}
 	},
+	{
+		"savq/melange-nvim"
+	},
+	-- end of themes
+	
 	"ap/vim-css-color",
 	"neovim/nvim-lspconfig",
 	{
