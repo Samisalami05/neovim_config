@@ -1,9 +1,15 @@
 {
-  "coq_nvim": { "branch": "coq", "commit": "2732cfa52fffd32d535c782f418da6fb8bf331ea" },
+  "coq-nvim": { "branch": "coq", "commit": "2732cfa52fffd32d535c782f418da6fb8bf331ea" },
+  "coq.artifacts": { "branch": "artifacts", "commit": "ef5f21d638ccc456cfa5b8d0ab37093cefe48c8b" },
+  "coq.thirdparty": { "branch": "3p", "commit": "6ee3c221c308dca7071387267ac76c9272b184a9" },
   "fzf": { "branch": "master", "commit": "416aff86e9d550d0a34af9d3cc12dfede25354c3" },
   "fzf.vim": { "branch": "master", "commit": "3725f364ccd25b85a91970720ba9bc2931861910" },
+  "gruvbox.nvim": { "branch": "main", "commit": "a56f758f9d3eed0b8afbab6ea3ee523887755aed" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
+  "mason.nvim": { "branch": "main", "commit": "7dc4facca9702f95353d5a1f87daf23d78e31c2a" },
+  "melange-nvim": { "branch": "master", "commit": "ce42f6b629beeaa00591ba73a77d3eeac4cf28ce" },
   "neovim": { "branch": "main", "commit": "72a04c4065345b51b56aed4859ea1d884f734097" },
-  "nvim-lspconfig": { "branch": "master", "commit": "5f550bbb4d58bb2bfbbed4633fc69c3f0eccaf3a" },
-  "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" }
+  "nvim-lspconfig": { "branch": "master", "commit": "a3deebbd110016f50cc66b7b256120072f3804db" },
+  "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
+  "vim-css-color": { "branch": "master", "commit": "14fd934cdd9ca1ac0e53511094e612eb9bace373" }
 }
