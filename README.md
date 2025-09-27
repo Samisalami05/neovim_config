@@ -1,5 +1,15 @@
 ## My neovim config
 
+My neovim config with Lazy as plugin loader.
+
+### Plugins
+* lazy.nvim
+* lualine.nvim
+* nvim-cmp
+* mason.nvim
+* mason-lspconfig.nvim
+* telescope.nvim
+
 ### Vim settings
 * Relative numbered lines
 * Auto indent
@@ -9,9 +19,7 @@
 * Smart case
 
 ### Colors and Theme
-* Termgui colors
-* Dark background
-* Colorscheme: `rose-pine`
+* Colorscheme: `catppuccin`
 
 ### Binds
 ```vim
