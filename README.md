@@ -2,7 +2,7 @@
 
 My neovim config with Lazy as plugin loader.
 
-<img src="https://github.com/Samisalami05/neovim_config/config_showcase.png" />
+<img src="https://github.com/Samisalami05/neovim_config/blob/master/config_showcase.png" />
 
 ### Plugins
 * lazy.nvim
