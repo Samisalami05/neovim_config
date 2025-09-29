@@ -11,6 +11,7 @@ My neovim config with Lazy as plugin loader.
 * mason.nvim
 * mason-lspconfig.nvim
 * telescope.nvim
+* smear-cursor.nvim
 
 ### Vim settings
 * Relative numbered lines
