@@ -11,6 +11,14 @@ return {
 		local width = vim.api.nvim_win_get_width(0)
 		local height = vim.api.nvim_win_get_height(0)
 
+		local function center(text, width)
+			local padding = math.max(0, math.floor((width - #text) / 2))
+			return string.rep(" ", padding) .. text
+		end
+
+		local v = vim.version()
+		local version_string = string.format("%d.%d.%d", v.major, v.minor, v.patch)
+
 		local header = {
 			"                                                     ",
 			"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
@@ -20,7 +28,7 @@ return {
 			"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
 			"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
 			"                                                     ",
-			"                        v0.11.5                      ",
+			center("v" .. version_string, 53),
 			"                                                     ",
 			"     Nvim is open source and freely distributale     ",
 			"               https://neovim.io/#chat               ",
@@ -30,14 +38,16 @@ return {
 			"     type  :q<Enter>             to exit             ",
 			"     type  :help<Enter>          for help            ",
 			"                                                     ",
-			"     type  :help news<Enter> to see changes in v0.11 ",
+			"     type  :help news<Enter> to see changes in v".. v.major .. "." .. v.minor .. " ",
 			"                                                     ",
 			"             Help poor children in Uganda!           ",
 			"     type  :help Kuwasha<Enter>  for information     ",
 			"                                                     ",
 		}
 
-		local snowAmount = 0.1
+		---- Settings ----
+		local snowAmount <const> = 0.1
+		local padding	 <const> = 5
 
 		local randomRow = function ()
 			local line = ""
@@ -63,10 +73,8 @@ return {
 		local generateImage = function(previous, time)
 			local lines = {}
 
-			-- first row: random snowflakes
-			lines[1] = randomRow()  -- your function
+			lines[1] = randomRow()
 
-			-- initialize all other rows with spaces
 			for y = 2, height do
 				local row = {}
 				for x = 1, width do
@@ -96,7 +104,6 @@ return {
 				end
 			end
 
-			-- convert each row from table back to string
 			for y = 2, height do
 				lines[y] = table.concat(lines[y])
 			end
@@ -107,8 +114,6 @@ return {
 		local addHeader = function (image, header)
 			local hwidth = #header[1]
 			local hheight = #header
-
-			local padding = 5
 
 			local startx = 1 + math.floor((width - hwidth) / 2)
 			local starty = 1 + padding
@@ -141,7 +146,7 @@ return {
 			dashboard.button( "s", "  > Settings" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
 			dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
 		}
-		dashboard.section.footer.val = {}    -- optional, remove footer too
+		dashboard.section.footer.val = {}
 		alpha.setup({
 			layout = {
 				dashboard.section.header,
@@ -156,12 +161,10 @@ return {
 			if _G.paused then return end
 			time = time + 1
 
-			-- Update header
 			local prev = dashboard.section.header.val
 			background = generateImage(background, time)
 			dashboard.section.header.val = addHeader(background, header)
 
-			-- Redraw Alpha buffer
 			vim.schedule(function()
 				pcall(alpha.redraw)
 			end)
