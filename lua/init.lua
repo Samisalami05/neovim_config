@@ -24,6 +24,8 @@ vim.opt.scrolloff = 6
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
+-- vim.opt.runtimepath:append('/home/samisalami/Projects/theme-selector/')
+
 -- [[ Keymaps ]]
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
@@ -45,3 +47,13 @@ map("n", "<A-S-l>", "<C-w>l", opts)
 map("n", "<A-S-n>", "gT", opts)
 map("n", "<A-S-m>", "gt", opts)
 
+vim.keymap.set("n", "<C-h>", function()
+    require("alpha").start()
+end, { noremap = true, silent = true })
+
+
+-- Neovide settings
+if vim.g.neovide then
+	vim.print("Found neovide");
+	--vim.g.neovide_cursor_vfx_mode = "pixiedust";
+end

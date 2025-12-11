@@ -14,18 +14,18 @@ return {
 			-- Setup Lsp
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "tsserver", "bashls", "clangd" },
+				ensure_installed = { "lua_ls", "bashls", "clangd", "jdtls" },
 			})
 
-			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			local servers = { "lua_ls", "pyright", "tsserver", "bashls" }
+			local servers = { "lua_ls", "bashls", "clangd", "jdtls" }
 
 			for _, server in ipairs(servers) do
-				lspconfig[server].setup({
+				vim.lsp.config(server, {
 					capabilities = capabilities,
 				})
+				vim.lsp.enable(server);
 			end
 
 			-- Diagnostics visuals
