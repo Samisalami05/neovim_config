@@ -46,14 +46,17 @@ return {
 		}
 
 		---- Settings ----
-		local snowAmount <const> = 0.1
-		local padding	 <const> = 5
+		local snow_amount = 0.1
+		local padding	  = 7
+		local max_steps   = 3
+		local xdir        = 0  -- 0 is middle
+		local delay       = 1000
 
 		local randomRow = function ()
 			local line = ""
 			for x = 1, width do
 				local rand = math.random()
-				if rand < snowAmount then
+				if rand < snow_amount then
 					line = line .. "*"
 				else
 					line = line .. " "
@@ -89,11 +92,11 @@ return {
 					for x = 1, #row_str do
 						if string.sub(row_str, x, x) == "*" then
 							-- move down randomly 1–3 rows
-							local dy = math.random(1, 3)
+							local dy = math.random(1, max_steps)
 							local new_y = y + dy
 							if new_y <= height then
 								-- optional horizontal shift
-								local dx = math.random(-1, 1)
+								local dx = math.random(-1 + xdir, 1 + xdir)
 								local new_x = x + dx
 								if new_x >= 1 and new_x <= width then
 									lines[new_y][new_x] = "*"
@@ -157,7 +160,7 @@ return {
 		_G.paused = false
 
 		local timer = vim.loop.new_timer()
-		timer:start(1000, 1000, function()
+		timer:start(delay, delay, function()
 			if _G.paused then return end
 			time = time + 1
 
