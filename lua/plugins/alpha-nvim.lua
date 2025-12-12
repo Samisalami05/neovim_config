@@ -51,13 +51,30 @@ return {
 		local max_steps   = 3
 		local xdir        = 0  -- 0 is middle
 		local delay       = 1000
+		local snow        = {"*", "+", "."}
+
+		if #snow <= 0 then return end
+
+		local randomSnow = function ()
+			local index = math.random(1, #snow)
+			return snow[index]
+		end
+
+		local isSnow = function (c)
+			for i = 1, #snow do
+				if c == snow[i] then
+					return true
+				end
+			end
+			return false
+		end
 
 		local randomRow = function ()
 			local line = ""
 			for x = 1, width do
 				local rand = math.random()
 				if rand < snow_amount then
-					line = line .. "*"
+					line = line .. randomSnow()
 				else
 					line = line .. " "
 				end
@@ -90,7 +107,7 @@ return {
 				for y = 1, #previous do
 					local row_str = previous[y]
 					for x = 1, #row_str do
-						if string.sub(row_str, x, x) == "*" then
+						if isSnow(string.sub(row_str, x, x)) then
 							-- move down randomly 1–3 rows
 							local dy = math.random(1, max_steps)
 							local new_y = y + dy
@@ -99,7 +116,7 @@ return {
 								local dx = math.random(-1 + xdir, 1 + xdir)
 								local new_x = x + dx
 								if new_x >= 1 and new_x <= width then
-									lines[new_y][new_x] = "*"
+									lines[new_y][new_x] = randomSnow()
 								end
 							end
 						end
