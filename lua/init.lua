@@ -26,6 +26,8 @@ vim.opt.background = "dark"
 
 -- vim.opt.runtimepath:append('/home/samisalami/Projects/theme-selector/')
 
+vim.opt.clipboard = "unnamedplus"
+
 -- [[ Keymaps ]]
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
@@ -54,6 +56,6 @@ end, { noremap = true, silent = true })
 
 -- Neovide settings
 if vim.g.neovide then
-	vim.print("Found neovide");
+	--vim.keymap
 	--vim.g.neovide_cursor_vfx_mode = "pixiedust";
 end

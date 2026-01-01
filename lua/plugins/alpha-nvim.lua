@@ -30,7 +30,7 @@ return {
 			"                                                     ",
 			center("v" .. version_string, 53),
 			"                                                     ",
-			"     Nvim is open source and freely distributale     ",
+			"     Nvim is open source and freely distributable    ",
 			"               https://neovim.io/#chat               ",
 			"                                                     ",
 			"     type  :help nvim<Enter>     if you are new!     ",
@@ -69,11 +69,11 @@ return {
 			return false
 		end
 
-		local randomRow = function ()
+		local randomRow = function (p)
 			local line = ""
 			for x = 1, width do
 				local rand = math.random()
-				if rand < snow_amount then
+				if rand < snow_amount * p then
 					line = line .. randomSnow()
 				else
 					line = line .. " "
@@ -85,7 +85,7 @@ return {
 		local randomImage = function ()
 			local lines = {}
 			for y = 1, height do
-				lines[y] = randomRow()
+				lines[y] = randomRow(1 / max_steps)
 			end
 			return lines
 		end
@@ -93,7 +93,7 @@ return {
 		local generateImage = function(previous, time)
 			local lines = {}
 
-			lines[1] = randomRow()
+			lines[1] = randomRow(1)
 
 			for y = 2, height do
 				local row = {}
@@ -174,6 +174,20 @@ return {
 			}
 		})
 
+		vim.api.nvim_create_autocmd({ "VimResized", "WinEnter" }, {
+			callback = function()
+				local buf = vim.api.nvim_get_current_buf()
+
+				if vim.bo[buf].filetype == "alpha" then
+					width = vim.api.nvim_win_get_width(0)
+					height = vim.api.nvim_win_get_height(0)
+					background = randomImage()
+					-- Alpha window was resized
+					require("alpha").redraw()
+				end
+			end,
+		})
+
 		_G.paused = false
 
 		local timer = vim.loop.new_timer()
@@ -197,6 +211,5 @@ return {
 		--		vim.notify(vim.bo.filetype, vim.log.levels.INFO)
 		--	end
 		--})
-
     end
 };
