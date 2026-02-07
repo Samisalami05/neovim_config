@@ -27,7 +27,7 @@ return {
 					vertical = { width = 0.9 },
 				},
 
-				file_ignore_patterns = { "node_modules", ".git/" },
+				file_ignore_patterns = { "node_modules", ".git/", "/build/", "/libs/" },
 			},
 		})
   end,

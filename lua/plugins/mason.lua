@@ -8,7 +8,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = {
 			"neovim/nvim-lspconfig",
-			"hrsh7th/nvim-cmp",
+			"saghen/blink.cmp",
 		},
 		config = function()
 			-- Setup Lsp
@@ -17,7 +17,7 @@ return {
 				ensure_installed = { "lua_ls", "bashls", "clangd", "jdtls" },
 			})
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 			local servers = { "lua_ls", "bashls", "clangd", "jdtls" }
 
