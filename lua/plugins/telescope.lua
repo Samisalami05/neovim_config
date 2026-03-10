@@ -27,7 +27,15 @@ return {
 					vertical = { width = 0.9 },
 				},
 
-				file_ignore_patterns = { "node_modules", ".git/", "/build/", "/libs/" },
+				file_ignore_patterns = {
+					"node_modules",
+					"%.git/",
+					"build/",
+					"libs/",
+					"%.o$",
+					"%.d$",
+					"%:Zone.Identifier"
+				},
 			},
 		})
   end,

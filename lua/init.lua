@@ -53,7 +53,6 @@ vim.keymap.set("n", "<C-h>", function()
     require("alpha").start()
 end, { noremap = true, silent = true })
 
-
 -- Neovide settings
 if vim.g.neovide then
 	--vim.keymap
